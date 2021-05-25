@@ -1,0 +1,193 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- ask_time:
+    use_entities: true
+- give_time:
+    use_entities: true
+- share_day:
+    use_entities: true
+- howwasyourday:
+    use_entities: true
+- howwasyourfavpart:
+    use_entities: true
+- ounds:
+    use_entities: true
+- ans_howwasyourday:
+    use_entities: true
+- ans_howwasyourfavpart:
+    use_entities: true
+- day_description:
+    use_entities: true
+- fav_part:
+    use_entities: true
+- invitation:
+    use_entities: true
+- dontknow:
+    use_entities: true
+- dontintere:
+    use_entities: true
+- button_A:
+    use_entities: true
+entities:
+- time
+slots:
+  ask_back_favpart:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  ask_back_howwasyourday:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  day_describe:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  day_fav_part:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  invitation_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  invitation_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  invitation_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  invitation_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  invitation_q5:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  receive_thanks:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_greet:
+  - buttons:
+    - payload: /mood_great
+      title: great
+    - payload: /mood_unhappy
+      title: super sad
+    text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  - text: good bye
+  - text: see you next time
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_time:
+  - text: It is {time}.
+  utter_ask_day_describe:
+  - text: How was your day?
+  utter_ask_day_fav_part:
+  - text: What was your favourite part of today?
+  utter_ask_ask_back_howwasyourday:
+  - text: Wow! Sound so interesting. Would you like to know about my day?
+  utter_ask_ask_back_favpart:
+  - text: Yes, it is great! Ask me what was my fav part of today.
+  utter_ask_receive_thanks:
+  - text: My favourite part was talking to you! Do you like talking to me?
+  utter_submit:
+  - text: Ok. Thanks!
+  utter_slots_values:
+  - text: I will remember that
+  utter_default:
+  - text: Sorry, I didn't get that.
+  utter_ask_invitation_q1:
+  - text: We are going to Zoo this week. Are you going to join us?
+  utter_ask_invitation_q2:
+  - text: Why not?
+  utter_ask_invitation_q3:
+  - text: You are expected to give an explaination.
+  utter_ask_invitation_q4:
+  - text: It is not very polite saying so. You can try A. I have some errands to run. B. I have family dinner on that day.
+  utter_ask_invitation_q5:
+  - text: I see. Join us next time.
+actions:
+- action_show_time
+- action_restart
+- validate_share_about_day_form
+- utter_submit
+- utter_slots_values
+- action_next_topic
+forms:
+  share_about_day_form:
+    ask_back_favpart:
+    - type: from_text
+    ask_back_howwasyourday:
+    - type: from_text
+    day_describe:
+    - type: from_text
+    day_fav_part:
+    - type: from_text
+    receive_thanks:
+    - type: from_text
+  invitation_form:
+    invitation_q1:
+    - type: from_text
+    invitation_q2:
+    - type: from_text
+    invitation_q3:
+    - type: from_text
+    invitation_q4:
+    - type: from_text
+    invitation_q5:
+    - type: from_text
+  your_form:
+    slot_name:
+    - intent: intent_name
+      not_intent: excluded_intent
+      type: from_intent
+      value: my_value
+e2e_actions: []

@@ -1,0 +1,128 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: path about time
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_time
+  - action: action_show_time
+
+#- stroy: next topic
+#  steps:
+#  - action: next_topic
+
+- story: bye path
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+#- story: share about day
+#  steps:
+#  - action: utter_how_was_your_day
+#  - intent: day_like
+#  - action: utter_fav_part_today
+#  - intent: fav_part_description
+#  - action: action_show_time
+#  - active_loop: next_question
+- story: share_about_day
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: share_day
+  - action: share_about_day_form
+  - active_loop: share_about_day_form
+
+  - slot_was_set:
+    - requested_slot: day_describe
+  - slot_was_set:
+    - day_describe: it is good
+
+  - slot_was_set:
+    - requested_slot: day_fav_part
+  - slot_was_set:
+    - day_fav_part: my fav part is
+
+  - slot_was_set:
+    - requested_slot: ask_back_howwasyourday
+  - slot_was_set:
+    - ask_back_howwasyourday: it was very
+
+  - slot_was_set:
+    - requested_slot: ask_back_favpart
+  - slot_was_set:
+    - ask_back_favpart: it was very
+
+  - slot_was_set:
+    - requested_slot: receive_thanks
+  - slot_was_set:
+    - receive_thanks: received
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+
+- story: invitation
+  steps:
+  - intent: invitation
+  - action: invitation_form
+  - active_loop: invitation_form
+
+  - slot_was_set:
+    - requested_slot: invitation_q1
+  - slot_was_set:
+    - invitation_q1: dontknow
+
+  - slot_was_set:
+    - requested_slot: invitation_q2
+  - slot_was_set:
+    - invitation_q2: dontknow
+
+  - slot_was_set:
+    - requested_slot: invitation_q3
+  - slot_was_set:
+    - invitation_q3: notinterested
+
+  - slot_was_set:
+    - requested_slot: invitation_q4
+  - slot_was_set:
+    - invitation_q4: answer
+
+  - slot_was_set:
+    - requested_slot: invitation_q5
+  - slot_was_set:
+    - invitation_q5: answer
+
+  - active_loop: null
+  - action: utter_submit
+  - action: action_next_topic
