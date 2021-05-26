@@ -22,7 +22,7 @@ nlu:
     - good afternoon
     - cu
     - good by
-    - cee you later
+    - see you later
     - good night
     - bye
     - goodbye
@@ -39,6 +39,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - ok
 
 - intent: deny
   examples: |
@@ -104,15 +105,31 @@ nlu:
 
 - intent: day_description
   examples: |
-    - it is good
-    - very good
+    - It is [great]
+    - It is very [good]
+    - Pretty [well]
+    - awesome
 
 - intent: fav_part
   examples: |
-    - playing with friends
-    - my fav part is playing soccer
+    - My favorite part is [playing soccer]
+    - It is [drawing pictures]
 
-#topic invitation
+- intent: ask_back_howwasday
+  examples: |
+    - How about you?
+    - And you?
+    - What about you?
+    - How was your day?
+    - How's your day?
+    - So, how was your day?
+
+- intent: ask_back_favpart
+  examples: |
+    - What's your favorite part of today?
+    - So, what's your favorite part?
+
+# topic invitation
 - intent: invitation
   examples: |
     - accept invitation
@@ -128,3 +145,205 @@ nlu:
 - intent: button_A
   examples: |
     - I have some errands to run
+
+# topic asking directions
+- intent: asking_directions
+  examples: |
+    - ask directions 
+
+- intent: place
+  examples: |
+    - Yes, this is [my home]
+    - Yes, this is [New York]
+    - Yes, we are in [a park]
+    - We are in [a zoo]
+
+- intent: waytobusstop
+  examples: |
+    - The bus stop is there.
+
+# topic favorite_things
+- intent: favorite_things
+  examples: |
+    - favorite things
+
+- intent: favorite_things_a1
+  examples: |
+    - OK
+    - All right
+    - Yeah
+
+- intent: favorite_things_a2
+  examples: |
+    - My favorite food is [chicken]
+    - My favorite food is [apple]
+    - My favorite food is [rice]
+    - My favorite food is [chocolate]
+    - My favorite food is [hamburger]
+    - I like [chicken] best
+    - I like [apple] best
+    - I like [rice] best
+    - I like [chocolate] best
+    - I like [hamburger] best
+- intent: favorite_things_a3
+  examples: |
+    - Oh, what's your favorite food?
+    - What's your favorite food?
+    - How about you?
+    - What about you?
+
+- intent: favorite_things_a4
+  examples: |
+    - yes
+    - no
+    - nope
+    - yep
+    - sure
+    - of course
+    - not interested
+
+- intent: favorite_things_a6
+  examples: |
+    - My favorite game is [Starcraft]
+    - I like [Warcraft]
+    - I love [hide and seek]
+
+- intent: favorite_things_a7
+  examples: |
+    - Oh, what's your favorite game?
+    - What's your favorite game?
+    - How about you?
+    - What about you?
+
+# topic in an interview
+- intent: interview
+  examples: |
+    - in an interview
+- intent: interview_a1
+  examples: |
+    - I' am [Emma]
+    - My name is [Bob]
+    - They call me [Tom]
+- intent: interview_a2
+  examples: |
+    - I am from
+- intent: interview_a3
+  examples: |
+    - This is
+- intent: interview_a4
+  examples: |
+    - I know [java]
+    - I do well in [C++ programming]
+    - I am good at [python]
+- intent: interview_a5
+  examples: |
+    - I want to [be a manager]
+    - I want to [be a worker]
+    - I want to [be a teacher]
+    - I want to work as a [doctor]
+    - I dream to be a [seller]
+- intent: interview_a6
+  examples: |
+    - My strength is [hardworking]
+    - My strength is [smart]
+    - I am [hardworking]
+- intent: interview_a7
+  examples: |
+    - My weakness is [introversion]
+    - I am [slow]
+- intent: interview_a8
+  examples: |
+    - I like [people to be friendly and honest]
+    - I like [place near to MRT]
+- intent: interview_a9
+  examples: |
+    - I like [a place that allows me to learn]
+- intent: interview_a10
+  examples: |
+    - I don't know
+- intent: interview_a11
+  examples: |
+    - I want to [be a programmer]
+    - I [plan to be a doctor]
+- intent: interview_a12
+  examples: |
+    - I am open to other opportunities too.
+- intent: interview_a13
+  examples: |
+    - No
+    - N
+    - Nope
+
+# topic greeting
+- intent: greeting
+  examples: |
+    - start topic greeting
+- intent: greeting_a1
+  examples: |
+    - Hi
+    - Hello
+    - Good morning
+    - Good afternoon
+    - Good evening
+- intent: greeting_a2
+  examples: |
+    - How about you?
+    - How's your day?
+    - What about you?
+
+# making meeting appointment
+- intent: meeting_appointment
+  examples: |
+    - start topic making meeting appointment
+- intent: meeting_appointment_a1
+  examples: |
+    - I want to meet you.
+    - Are you free lately?
+- intent: meeting_appointment_a2
+  examples: |
+    - Can I meet you at your convenience?
+- intent: meeting_appointment_a4
+  examples: |
+    - I want to ask about the new task, i am not very clear about it.
+- intent: meeting_appointment_a6
+  examples: |
+    - Actually I have a lesson during the time.
+- intent: meeting_appointment_a7
+  examples: |
+    - How about 4 pm tomorrow?
+    - 10 am?
+    - How about 7 pm next Tuesday?
+- intent: meeting_appointment_a9
+  examples: |
+    - thank you.
+- intent: meeting_appointment_a10
+  examples: |
+    - see you then.
+
+# encountering a problem
+- intent: encountering_problem
+  examples: |
+    - start topic encountering problem
+- intent: encountering_problem_a1
+  examples: |
+    - I've not completed yet.
+- intent: encountering_problem_a2
+  examples: |
+    - I do not know what to do.
+- intent: encountering_problem_a3
+  examples: |
+    - I do not know what the instruction is.
+
+# seek clarification
+- intent: seek_clarification
+  examples: |
+    - start topic seek clarification
+- intent: seek_clarification_a1
+  examples: |
+    - I am having a problem with the assignment
+- intent: seek_clarification_a2
+  examples: |
+    - I don't know how to solve it.
+- intent: seek_clarification_a3
+  examples: |
+    - I don't understand the requirement.

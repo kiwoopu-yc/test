@@ -36,9 +36,13 @@ intents:
 - ans_howwasyourfavpart:
     use_entities: true
 - day_description:
-    use_entities: true
+    use_entities:
+        - daydesc
 - fav_part:
-    use_entities: true
+    use_entities:
+        - favpart
+
+# invitation
 - invitation:
     use_entities: true
 - dontknow:
@@ -47,19 +51,124 @@ intents:
     use_entities: true
 - button_A:
     use_entities: true
+
+# asking_directions
+- place:
+    use_entities:
+      - placenow
+- waytobusstop:
+    use_entities: true
+
+- asking_directions:
+    use_entities: true
+
+# favorite_things
+- favorite_things:
+    use_entities: true
+- favorite_things_a1:
+    use_entities: true
+- favorite_things_a2:
+    use_entities:
+      - favorite_things_fav_food
+- favorite_things_a3:
+    use_entities: true
+- favorite_things_a4:
+    use_entities: true
+- favorite_things_a6:
+    use_entities:
+      - favorite_things_fav_game
+- favorite_things_a7:
+    use_entities: true
+
+# in an interview
+- interview:
+    use_entities: true
+- interview_a1:
+    use_entities:
+      - interview_name
+- interview_a2:
+    use_entities: true
+- interview_a3:
+    use_entities: true
+- interview_a4:
+    use_entities:
+      - interview_skills
+- interview_a5:
+    use_entities:
+      - interview_job
+- interview_a6:
+    use_entities:
+      - interview_strength
+- interview_a7:
+    use_entities:
+      - interview_weakness
+- interview_a8:
+    use_entities:
+      - interview_coleagues_type
+- interview_a9:
+    use_entities:
+      - interview_working_environment
+- interview_a10:
+    use_entities: true
+- interview_a11:
+    use_entities:
+      - interview_career_job
+- interview_a12:
+    use_entities: true
+- interview_a13:
+    use_entities: true
+
+# greeting
+- greeting:
+    use_entities: true
+- greeting_a1:
+    use_entities: true
+- greeting_a2:
+    use_entities: true
+
+# making a meeting appointment
+- meeting_appointment:
+    use_entities: true
+- meeting_appointment_a1:
+    use_entities: true
+- meeting_appointment_a2:
+    use_entities: true
+- meeting_appointment_a4:
+    use_entities: true
+- meeting_appointment_a6:
+    use_entities: true
+- meeting_appointment_a7:
+    use_entities: true
+- meeting_appointment_a9:
+    use_entities: true
+- meeting_appointment_a10:
+    use_entities: true
+
+# encountering a problem
+- encountering_problem:
+    use_entities: true
+- encountering_problem_a1:
+    use_entities: true
+- encountering_problem_a2:
+    use_entities: true
+- encountering_problem_a3:
+    use_entities: true
+
+# seek clarification
+- seek_clarification:
+    use_entities: true
+- seek_clarification_a1:
+    use_entities: true
+- seek_clarification_a2:
+    use_entities: true
+- seek_clarification_a3:
+    use_entities: true
+
 entities:
 - time
+
 slots:
-  ask_back_favpart:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: true
-  ask_back_howwasyourday:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: true
+  # share_about_day
   day_describe:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
@@ -70,6 +179,28 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
+  ask_back_howwasyourday:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  ask_back_favpart:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  receive_thanks:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+
+  # invitation
   invitation_q1:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
@@ -95,95 +226,697 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  receive_thanks:
+
+  # asking_directions
+  asking_directions_q1:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  requested_slot:
-    type: rasa.shared.core.slots.UnfeaturizedSlot
+  asking_directions_q2:
+    type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
-    influence_conversation: false
+    influence_conversation: true
+  asking_directions_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  # favorite_things
+  favorite_things_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q5:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q6:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q7:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  favorite_things_q8:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  # in an interview
+  interview_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q5:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q6:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q7:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q8:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q9:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q10:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q11:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q12:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q13:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q14:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  interview_q15:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  # greeting
+  greeting_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  greeting_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  greeting_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  greeting_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  # making appointment
+  meeting_appointment_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q5:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q6:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q7:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q8:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q9:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  meeting_appointment_q10:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  # encountering a problem
+  encountering_problem_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q5:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q6:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q7:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  encountering_problem_q8:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  # seek clarification
+  seek_clarification_q1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q4:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q5:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q6_1:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q6_2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q7:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  seek_clarification_q8:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
 responses:
   utter_greet:
-  - buttons:
-    - payload: /mood_great
-      title: great
-    - payload: /mood_unhappy
-      title: super sad
-    text: Hey! How are you?
+    - buttons:
+      - payload: /mood_great
+        title: great
+      - payload: /mood_unhappy
+        title: super sad
+      text: Hey! How are you?
   utter_cheer_up:
-  - image: https://i.imgur.com/nGF1K8f.jpg
-    text: 'Here is something to cheer you up:'
+    - image: https://i.imgur.com/nGF1K8f.jpg
+      text: 'Here is something to cheer you up:'
   utter_did_that_help:
-  - text: Did that help you?
+    - text: Did that help you?
   utter_happy:
-  - text: Great, carry on!
+    - text: Great, carry on!
   utter_goodbye:
-  - text: Bye
-  - text: good bye
-  - text: see you next time
+    - text: Bye
+    - text: good bye
+    - text: see you next time
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+    - text: I am a bot, powered by Rasa.
   utter_ask_time:
-  - text: It is {time}.
+    - text: It is {time}.
+
+  # day describe
   utter_ask_day_describe:
-  - text: How was your day?
+    - text: How was your day?
   utter_ask_day_fav_part:
-  - text: What was your favourite part of today?
+    - text: What was your favourite part of today?
   utter_ask_ask_back_howwasyourday:
-  - text: Wow! Sound so interesting. Would you like to know about my day?
+    - text: Wow! Sound so interesting. Would you like to know about my day?
   utter_ask_ask_back_favpart:
-  - text: Yes, it is great! Ask me what was my fav part of today.
+    - text: Yes, it is great! Ask me what was my fav part of today.
   utter_ask_receive_thanks:
-  - text: My favourite part was talking to you! Do you like talking to me?
+    - text: My favourite part was talking to you! Do you like talking to me?
   utter_submit:
-  - text: Ok. Thanks!
+    - text: Ok. Thanks!
   utter_slots_values:
-  - text: I will remember that
+    - text: I will remember that
   utter_default:
-  - text: Sorry, I didn't get that.
+    - text: Sorry, I didn't get that.
+  
+  # invitation
   utter_ask_invitation_q1:
-  - text: We are going to Zoo this week. Are you going to join us?
+    - text: We are going to Zoo this week. Are you going to join us?
   utter_ask_invitation_q2:
-  - text: Why not?
+    - text: Why not?
   utter_ask_invitation_q3:
-  - text: You are expected to give an explaination.
+    - text: You are expected to give an explaination.
   utter_ask_invitation_q4:
-  - text: It is not very polite saying so. You can try A. I have some errands to run. B. I have family dinner on that day.
+    - text: It is not very polite saying so. You can try A. I have some errands to run. B. I have family dinner on that day.
   utter_ask_invitation_q5:
-  - text: I see. Join us next time.
+    - text: I see. Join us next time.
+  
+  # asking directions
+  utter_ask_asking_directions_q1:
+    - text: Hi, do you know where are we?
+  utter_ask_asking_directions_q2:
+    - buttons:
+      - payload: /affirm
+        title: y
+      - payload: /deny
+        title: n
+      text: Do you know where is the nearest bus stop?
+  utter_ask_asking_directions_q3:
+    - text: Can you tell me how to get there?
+
+  # favorite things
+  utter_ask_favorite_things_q1:
+    - text: Let's share about our favorite things!
+  utter_ask_favorite_things_q2:
+    - text: What's your favorite food?
+  utter_ask_favorite_things_q3:
+    - text: Aren't you going to ask me back?
+  utter_ask_favorite_things_q4:
+    - text: I like eating chicken rice! Do you like it?
+  utter_ask_favorite_things_q5:
+    - text: Do you like playing games?
+  utter_ask_favorite_things_q6:
+    - text: If you had to choose, what is your favorite game?
+  utter_ask_favorite_things_q7:
+    - text: Do you want to ask me about mine?
+  utter_ask_favorite_things_q8:
+    - text: I like to play Plants VS Zombie. Do you know that game?
+
+  # in an interview
+  utter_ask_interview_q1:
+    - text: Tell me about yourself. (Name, age and ...)
+  utter_ask_interview_q2:
+    - text: Talk about your study.
+  utter_ask_interview_q3:
+    - text: Which year? When will you graduate?
+  utter_ask_interview_q4:
+    - text: Continue, try to talk a little more, about skills you have.
+  utter_ask_interview_q5:
+    - text: Try harder, what job do you want to do?
+  utter_ask_interview_q6:
+    - text: What's your strength?
+  utter_ask_interview_q7:
+    - text: Try some of these words, meticulous, proactive, passionate, detailed focused. patient, diligent. What;s your weakness?
+  utter_ask_interview_q8:
+    - text: Hmmm, try to be more specific, and in a positive tone, like "I sometimes may grasp the ideas slowly, but I am alwasy willing to learn". What kind of working environment do you like? Imagine that you are in an office, what type of colleagues you would like to work with?
+  utter_ask_interview_q9:
+    - text: Hmmm, better not to make comments on something the company cannot change, for example, their location. you can mention something like a place for you to learn skills.
+  utter_ask_interview_q10:
+    - text: What do you plan to do in the future. (What is your career aspiration/ What do you see yourself in 5 years)
+  utter_ask_interview_q11:
+    - text: Better not to say this. You can think about job roles you are interested in.
+  utter_ask_interview_q12:
+    - text: Add one more sentence to keep option open, show that you are open to other opportunites too.
+  utter_ask_interview_q13:
+    - text: Do you have any questions for us?
+  utter_ask_interview_q14:
+    - text: Never say no. Asking questions to show that you are intrested in the job, You may ask about the expectation of the job performance. training opportunities, etc. (or provide the following sample sentences for users to key in)
+  utter_ask_interview_q15:
+    - text: Ok, that's all for today. (remember to say thank you)
+
+  # greeting
+  utter_ask_greeting_q1:
+    - text: Hi~
+  utter_ask_greeting_q2:
+    - text: How's your day?
+  utter_ask_greeting_q3:
+    - text: To be polite, you can ask back.
+  utter_ask_greeting_q4:
+    - text: Good!
+
+  # make a meeting appointment
+  utter_ask_meeting_appointment_q1:
+    - text: Let's say if you want to meet your supervisor, how will you make an appointment?
+  utter_ask_meeting_appointment_q2:
+    - text: To be polite, usually we say "can I meet you at your convinence".
+  utter_ask_meeting_appointment_q3:
+    - text: What is the meeting about?
+  utter_ask_meeting_appointment_q4:
+    - buttons:
+        - payload: /meeting_appointment_a4
+          title: I want to ask about the new task, i am not very clear about it.
+      text: You are expected to describe the topics you are going to talk about with the person. Let's try the following
+  utter_ask_meeting_appointment_q5:
+    - text: Ok. You can come to my office at 3:30 tomorrow afternoon.
+  utter_ask_meeting_appointment_q6:
+    - buttons:
+        - payload: /meet_apointment_a6
+          title: Actually I have a lesson during the time.
+      text: If the time works for you, say ""ok, thank you". If the time doesn't work for you, you shall ask for another time slot. Now you can suppose that you are busy at that time. (press the button)
+  utter_ask_meeting_appointment_q7:
+    - text: What time is good for you then? (propose a timeslot that works for you)
+  utter_ask_meeting_appointment_q8:
+    - text: I cannot, i have a meeting at the time. (now, you can propose another time)
+  utter_ask_meeting_appointment_q9:
+    - text: Ok, sounds cool. (remember to thank the person)
+  utter_ask_meeting_appointment_q10:
+    - text: No problem, thank you. (you can reply "see you then" too)
+
+  # topic encountering a problem
+  utter_ask_encountering_problem_q1:
+    - text: Now, assume that your co-work is asking you about your task. What's going on? Why haven't you submitted the work? (prompt - not finished yet)
+  utter_ask_encountering_problem_q2:
+    - buttons:
+        - payload: /encountering_problem_a2
+          title: I do not know what to do.
+      text: Why?
+  utter_ask_encountering_problem_q3:
+    - buttons:
+        - payload: /encountering_problem_a3
+          title: I do not know what the instruction is.
+      text: What do you mean by you do not know?
+  utter_ask_encountering_problem_q4:
+    - buttons:
+        - payload: /affirm
+          title: yes
+        - payload: /deny
+          title: no
+      text: Have you tried to clarify with anyone?
+  utter_ask_encountering_problem_q5:
+    - buttons:
+        - payload: /affirm
+          title: yes
+        - payload: /deny
+          title: no
+      text: Have you tried to check your work, whether you followed the steps or not?
+  utter_ask_encountering_problem_q6:
+    - text: Are you stuck at which step?
+  utter_ask_encountering_problem_q7:
+    - text: You should mention it to your supervisor, let him help.
+  utter_ask_encountering_problem_q8:
+    - text: Usually we will thank the person if we are given an advice or suggestions,
+
+  # topic seek clarification
+  utter_ask_seek_clarification_q1:
+    - text: Assume that you encounter a problem with your assignment. You want to clarify with your supervisor. What would you say?
+  utter_ask_seek_clarification_q2:
+    - buttons:
+        - payload: /seek_clarification_a2
+          title: I don't know how to solve it.
+      text: What is it about?
+  utter_ask_seek_clarification_q3:
+    - buttons:
+        - payload: /seek_clarification_a3
+          title: I don't understand the requirement.
+      text: You can elaborate, to tell the person what is your assignment, and what specifically you are stuck at? For example, 1) don't understand the requirement, 2) do not know how to start 3) tried a method but it doesn't work (Now, suppose that you don't understand the requirments.)
+  utter_ask_seek_clarification_q4:
+    - text: Ok, tell me about the requirements.
+  utter_ask_seek_clarification_q5:
+    - text: Ok, can you list down the steps you plan to do?
+  utter_ask_seek_clarification_q6_1:
+    - buttons:
+        - payload: /affirm
+          title: yes
+        - payload: /deny
+          title: no
+      text: Did you work on similar task before?
+  utter_ask_seek_clarification_q6_2:
+    - text: OK. The supervisor will guide you to deal with the problem.
+  utter_ask_seek_clarification_q7:
+    - text: What were the steps you used before? What is Step 1?
+  utter_ask_seek_clarification_q8:
+    - text: Good, you can try the same step for this current task.
+
+
+
 actions:
-- action_show_time
-- action_restart
-- validate_share_about_day_form
-- utter_submit
-- utter_slots_values
-- action_next_topic
+  - action_show_time
+  - action_restart
+  - validate_share_about_day_form
+  - validate_asking_directions_form
+  - validate_favorite_things_form
+  - validate_interview_form
+  - validate_greeting_form
+  - validate_meeting_appointment_form
+  - validate_encountering_problem_form
+  - validate_seek_clarification_form
+  - utter_submit
+  - utter_slots_values
+  - action_next_topic
+
 forms:
   share_about_day_form:
-    ask_back_favpart:
-    - type: from_text
-    ask_back_howwasyourday:
-    - type: from_text
     day_describe:
-    - type: from_text
+      - type: from_text
     day_fav_part:
-    - type: from_text
+      - type: from_text
+    ask_back_howwasyourday:
+      - type: from_text
+    ask_back_favpart:
+      - type: from_text
     receive_thanks:
-    - type: from_text
+      - type: from_text
+
   invitation_form:
     invitation_q1:
-    - type: from_text
+      - type: from_text
     invitation_q2:
-    - type: from_text
+      - type: from_text
     invitation_q3:
-    - type: from_text
+      - type: from_text
     invitation_q4:
-    - type: from_text
+      - type: from_text
     invitation_q5:
-    - type: from_text
+      - type: from_text
+
+  asking_directions_form:
+    asking_directions_q1:
+      - type: from_text
+    asking_directions_q2:
+      - type: from_text
+    asking_directions_q3:
+      - type: from_text
+
+  favorite_things_form:
+    favorite_things_q1:
+      - type: from_text
+    favorite_things_q2:
+      - type: from_text
+    favorite_things_q3:
+      - type: from_text
+    favorite_things_q4:
+      - type: from_text
+    favorite_things_q5:
+      - type: from_text
+    favorite_things_q6:
+      - type: from_text
+    favorite_things_q7:
+      - type: from_text
+    favorite_things_q8:
+      - type: from_text
+
+  interview_form:
+    interview_q1:
+      - type: from_text
+    interview_q2:
+      - type: from_text
+    interview_q3:
+      - type: from_text
+    interview_q4:
+      - type: from_text
+    interview_q5:
+      - type: from_text
+    interview_q6:
+      - type: from_text
+    interview_q7:
+      - type: from_text
+    interview_q8:
+      - type: from_text
+    interview_q9:
+      - type: from_text
+    interview_q10:
+      - type: from_text
+    interview_q11:
+      - type: from_text
+    interview_q12:
+      - type: from_text
+    interview_q13:
+      - type: from_text
+    interview_q14:
+      - type: from_text
+    interview_q15:
+      - type: from_text
+
+  greeting_form:
+    greeting_q1:
+      - type: from_text
+    greeting_q2:
+      - type: from_text
+    greeting_q3:
+      - type: from_text
+    greeting_q4:
+      - type: from_text
+
+  meeting_appointment_form:
+    meeting_appointment_q1:
+      - type: from_text
+    meeting_appointment_q2:
+      - type: from_text
+    meeting_appointment_q3:
+      - type: from_text
+    meeting_appointment_q4:
+      - type: from_text
+    meeting_appointment_q5:
+      - type: from_text
+    meeting_appointment_q6:
+      - type: from_text
+    meeting_appointment_q7:
+      - type: from_text
+    meeting_appointment_q8:
+      - type: from_text
+    meeting_appointment_q9:
+      - type: from_text
+    meeting_appointment_q10:
+      - type: from_text
+
+  encountering_problem_form:
+    encountering_problem_q1:
+      - type: from_text
+    encountering_problem_q2:
+      - type: from_text
+    encountering_problem_q3:
+      - type: from_text
+    encountering_problem_q4:
+      - type: from_text
+    encountering_problem_q5:
+      - type: from_text
+    encountering_problem_q6:
+      - type: from_text
+    encountering_problem_q7:
+      - type: from_text
+    encountering_problem_q8:
+      - type: from_text
+
+  seek_clarification_form:
+    seek_clarification_q1:
+      - type: from_text
+    seek_clarification_q2:
+      - type: from_text
+    seek_clarification_q3:
+      - type: from_text
+    seek_clarification_q4:
+      - type: from_text
+    seek_clarification_q5:
+      - type: from_text
+    seek_clarification_q6_1:
+      - type: from_text
+    seek_clarification_q6_2:
+      - type: from_text
+    seek_clarification_q7:
+      - type: from_text
+    seek_clarification_q8:
+      - type: from_text
+
+
   your_form:
     slot_name:
     - intent: intent_name

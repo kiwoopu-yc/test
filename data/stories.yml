@@ -53,6 +53,7 @@ stories:
 #  - intent: fav_part_description
 #  - action: action_show_time
 #  - active_loop: next_question
+
 - story: share_about_day
   steps:
   - intent: greet
@@ -91,7 +92,7 @@ stories:
   - action: utter_slots_values
   - action: action_next_topic
 
-
+# invitation
 - story: invitation
   steps:
   - intent: invitation
@@ -125,4 +126,373 @@ stories:
 
   - active_loop: null
   - action: utter_submit
+  - action: action_next_topic
+
+# ask directions
+- story: asking_directions
+  steps:
+  - intent: asking_directions
+  - action: asking_directions_form
+  - active_loop: asking_directions_form
+  
+  - slot_was_set:
+    - requested_slot: asking_directions_q1
+  - slot_was_set:
+    - asking_directions_q1: dontknow
+    
+  - slot_was_set:
+    - requested_slot: asking_directions_q2
+  - slot_was_set:
+    - asking_directions_q2: dontknow
+  
+  - slot_was_set:
+    - requested_slot: asking_directions_q3
+  - slot_was_set:
+    - asking_directions_q3: dontknow
+  
+  - active_loop: null
+  - action: utter_submit
+  - action: action_next_topic
+
+# favorite things
+- story: favorite things
+  steps:
+  - intent: favorite_things
+  - action: favorite_things_form
+  - active_loop: favorite_things_form
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q1
+  - slot_was_set:
+    - favorite_things_q1: it is good
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q2
+  - slot_was_set:
+    - favorite_things_q2: my fav part is
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q3
+  - slot_was_set:
+    - favorite_things_q3: it was very
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q4
+  - slot_was_set:
+    - favorite_things_q4: it was very
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q5
+  - slot_was_set:
+    - favorite_things_q5: received
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q6
+  - slot_was_set:
+    - favorite_things_q5: received
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q7
+  - slot_was_set:
+    - favorite_things_q6: received
+
+  - slot_was_set:
+    - requested_slot: favorite_things_q8
+  - slot_was_set:
+    - favorite_things_q7: received
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+# in a interview
+- story: interview
+  steps:
+  - intent: interview
+  - action: interview_form
+  - active_loop: interview_form
+
+  - slot_was_set:
+    - requested_slot: interview_q1
+  - slot_was_set:
+    - interview_q1: it is good
+
+  - slot_was_set:
+    - requested_slot: interview_q2
+  - slot_was_set:
+    - interview_q2: my fav part is
+
+  - slot_was_set:
+    - requested_slot: interview_q3
+  - slot_was_set:
+    - interview_q3: it was very
+
+  - slot_was_set:
+    - requested_slot: interview_q4
+  - slot_was_set:
+    - interview_q4: it was very
+
+  - slot_was_set:
+    - requested_slot: interview_q5
+  - slot_was_set:
+    - interview_q5: received
+
+  - slot_was_set:
+    - requested_slot: interview_q6
+  - slot_was_set:
+    - interview_q6: received
+
+  - slot_was_set:
+    - requested_slot: interview_q7
+  - slot_was_set:
+    - interview_q7: received
+
+  - slot_was_set:
+    - requested_slot: interview_q8
+  - slot_was_set:
+    - interview_q8: received
+
+  - slot_was_set:
+      - requested_slot: interview_q9
+  - slot_was_set:
+      - interview_q9: received
+
+  - slot_was_set:
+      - requested_slot: interview_q10
+  - slot_was_set:
+      - interview_q10: received
+
+  - slot_was_set:
+      - requested_slot: interview_q11
+  - slot_was_set:
+      - interview_q11: received
+
+  - slot_was_set:
+      - requested_slot: interview_q12
+  - slot_was_set:
+      - interview_q12: received
+
+  - slot_was_set:
+      - requested_slot: interview_q13
+  - slot_was_set:
+      - interview_q13: received
+
+  - slot_was_set:
+      - requested_slot: interview_q14
+  - slot_was_set:
+      - interview_q14: received
+
+  - slot_was_set:
+      - requested_slot: interview_q15
+  - slot_was_set:
+      - interview_q15: received
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+
+# greeting
+- story: greeting
+  steps:
+  - intent: greeting
+  - action: greeting_form
+  - active_loop: greeting_form
+
+  - slot_was_set:
+    - requested_slot: greeting_q1
+  - slot_was_set:
+    - greeting_q1: it is good
+
+  - slot_was_set:
+    - requested_slot: greeting_q2
+  - slot_was_set:
+    - greeting_q2: it is good
+
+  - slot_was_set:
+    - requested_slot: greeting_q3
+  - slot_was_set:
+    - greeting_q3: it is good
+
+  - slot_was_set:
+    - requested_slot: greeting_q4
+  - slot_was_set:
+    - greeting_q4: it is good
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+# make a meeting appointment
+- story: make_meeting_appointment
+  steps:
+  - intent: meeting_appointment
+  - action: meeting_appointment_form
+  - active_loop: meeting_appointment_form
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q1
+  - slot_was_set:
+    - meeting_appointment_q1: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q2
+  - slot_was_set:
+    - meeting_appointment_q2: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q3
+  - slot_was_set:
+    - meeting_appointment_q3: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q4
+  - slot_was_set:
+    - meeting_appointment_q4: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q5
+  - slot_was_set:
+    - meeting_appointment_q5: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q6
+  - slot_was_set:
+    - meeting_appointment_q6: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q7
+  - slot_was_set:
+    - meeting_appointment_q7: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q8
+  - slot_was_set:
+    - meeting_appointment_q8: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q9
+  - slot_was_set:
+    - meeting_appointment_q9: it is good
+
+  - slot_was_set:
+    - requested_slot: meeting_appointment_q10
+  - slot_was_set:
+    - meeting_appointment_q10: it is good
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+# Encountering a problem
+- story: encountering_problem
+  steps:
+  - intent: encountering_problem
+  - action: encountering_problem_form
+  - active_loop: encountering_problem_form
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q1
+  - slot_was_set:
+    - encountering_problem_q1: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q2
+  - slot_was_set:
+    - encountering_problem_q2: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q3
+  - slot_was_set:
+    - encountering_problem_q3: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q4
+  - slot_was_set:
+    - encountering_problem_q4: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q5
+  - slot_was_set:
+    - encountering_problem_q5: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q6
+  - slot_was_set:
+    - encountering_problem_q6: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q7
+  - slot_was_set:
+    - encountering_problem_q7: dontknow
+
+  - slot_was_set:
+    - requested_slot: encountering_problem_q8
+  - slot_was_set:
+    - encountering_problem_q8: dontknow
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+# Seek clarification
+- story: seek_clarification
+  steps:
+  - intent: seek_clarification
+  - action: seek_clarification_form
+  - active_loop: seek_clarification_form
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q1
+  - slot_was_set:
+    - seek_clarification_q1: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q2
+  - slot_was_set:
+    - seek_clarification_q2: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q3
+  - slot_was_set:
+    - seek_clarification_q3: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q4
+  - slot_was_set:
+    - seek_clarification_q4: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q5
+  - slot_was_set:
+    - seek_clarification_q5: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q6_1
+  - slot_was_set:
+    - seek_clarification_q6_1: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q6_2
+  - slot_was_set:
+    - seek_clarification_q6_2: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q7
+  - slot_was_set:
+    - seek_clarification_q7: dontknow
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q8
+  - slot_was_set:
+    - seek_clarification_q8: dontknow
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
   - action: action_next_topic
