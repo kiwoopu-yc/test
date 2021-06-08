@@ -13,6 +13,8 @@ intents:
     use_entities: true
 - deny:
     use_entities: true
+- thank:
+    use_entities: true
 - mood_great:
     use_entities: true
 - mood_unhappy:
@@ -24,6 +26,10 @@ intents:
 - give_time:
     use_entities: true
 - share_day:
+    use_entities: true
+- share_day1:
+    use_entities: true
+- share_day2:
     use_entities: true
 - howwasyourday:
     use_entities: true
@@ -58,8 +64,11 @@ intents:
       - placenow
 - waytobusstop:
     use_entities: true
-
 - asking_directions:
+    use_entities: true
+- asking_directions1:
+    use_entities: true
+- asking_directions2:
     use_entities: true
 
 # favorite_things
@@ -163,17 +172,16 @@ intents:
     use_entities: true
 - seek_clarification_a3:
     use_entities: true
+- seek_clarification_1:
+    use_entities: true
+- seek_clarification_2:
+    use_entities: true
 
 entities:
 - time
 
 slots:
   # share_about_day
-  day_describe:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: true
   day_fav_part:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
@@ -228,17 +236,17 @@ slots:
     influence_conversation: true
 
   # asking_directions
-  asking_directions_q1:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: true
   asking_directions_q2:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: true
   asking_directions_q3:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  asking_directions_q4:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
@@ -505,17 +513,12 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  seek_clarification_q6_1:
+  seek_clarification_q7_2:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  seek_clarification_q6_2:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: true
-  seek_clarification_q7:
+  seek_clarification_q7_1:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
@@ -551,8 +554,15 @@ responses:
     - text: It is {time}.
 
   # day describe
-  utter_ask_day_describe:
-    - text: How was your day?
+  utter_day_describe:
+    - buttons:
+        - payload: /share_day1
+          title: great
+        - payload: /share_day1
+          title: not bad
+        - payload: /share_day2
+          title: sad
+      text: How was your day?
   utter_ask_day_fav_part:
     - text: What was your favourite part of today?
   utter_ask_ask_back_howwasyourday:
@@ -581,16 +591,23 @@ responses:
     - text: I see. Join us next time.
   
   # asking directions
-  utter_ask_asking_directions_q1:
-    - text: Hi, do you know where are we?
+  utter_asking_directions_q1:
+    - buttons:
+        - payload: /asking_directions1
+          title: yes
+        - payload: /asking_directions2
+          title: no
+      text: Hi, do you know where are we?
   utter_ask_asking_directions_q2:
+    - text: What's the specific address?
+  utter_ask_asking_directions_q3:
     - buttons:
       - payload: /affirm
         title: y
       - payload: /deny
         title: n
       text: Do you know where is the nearest bus stop?
-  utter_ask_asking_directions_q3:
+  utter_ask_asking_directions_q4:
     - text: Can you tell me how to get there?
 
   # favorite things
@@ -732,21 +749,19 @@ responses:
     - text: Ok, tell me about the requirements.
   utter_ask_seek_clarification_q5:
     - text: Ok, can you list down the steps you plan to do?
-  utter_ask_seek_clarification_q6_1:
+  utter_seek_clarification_q6:
     - buttons:
-        - payload: /affirm
+        - payload: /seek_clarification_1
           title: yes
-        - payload: /deny
+        - payload: /seek_clarification_2
           title: no
       text: Did you work on similar task before?
-  utter_ask_seek_clarification_q6_2:
-    - text: OK. The supervisor will guide you to deal with the problem.
-  utter_ask_seek_clarification_q7:
+  utter_ask_seek_clarification_q7_2:
+    - text: Don't worry, you can contact with you supervisor who will guide you to solve your problem. Carry on!
+  utter_ask_seek_clarification_q7_1:
     - text: What were the steps you used before? What is Step 1?
   utter_ask_seek_clarification_q8:
     - text: Good, you can try the same step for this current task.
-
-
 
 actions:
   - action_show_time
@@ -759,14 +774,17 @@ actions:
   - validate_meeting_appointment_form
   - validate_encountering_problem_form
   - validate_seek_clarification_form
+  - validate_seek_clarification_1_form
+  - validate_seek_clarification_2_form
   - utter_submit
   - utter_slots_values
   - action_next_topic
+  - seek_clarification_q6
+  - utter_day_describe
+  - utter_asking_directions_q1
 
 forms:
   share_about_day_form:
-    day_describe:
-      - type: from_text
     day_fav_part:
       - type: from_text
     ask_back_howwasyourday:
@@ -789,11 +807,11 @@ forms:
       - type: from_text
 
   asking_directions_form:
-    asking_directions_q1:
-      - type: from_text
     asking_directions_q2:
       - type: from_text
     asking_directions_q3:
+      - type: from_text
+    asking_directions_q4:
       - type: from_text
 
   favorite_things_form:
@@ -907,15 +925,16 @@ forms:
       - type: from_text
     seek_clarification_q5:
       - type: from_text
-    seek_clarification_q6_1:
-      - type: from_text
-    seek_clarification_q6_2:
-      - type: from_text
-    seek_clarification_q7:
+
+  seek_clarification_1_form:
+    seek_clarification_q7_1:
       - type: from_text
     seek_clarification_q8:
       - type: from_text
 
+  seek_clarification_2_form:
+    seek_clarification_q7_2:
+      - type: from_text
 
   your_form:
     slot_name:

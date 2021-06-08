@@ -14,7 +14,7 @@ rules:
 
 - rule: Activate share_about_day form
   steps:
-  - intent: share_day
+  - intent: share_day1
   - action: share_about_day_form
   - active_loop: share_about_day_form
 

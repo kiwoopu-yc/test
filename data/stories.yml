@@ -36,36 +36,27 @@ stories:
   - intent: give_time
   - action: action_show_time
 
-#- stroy: next topic
-#  steps:
-#  - action: next_topic
-
 - story: bye path
   steps:
   - intent: goodbye
   - action: utter_goodbye
 
-#- story: share about day
-#  steps:
-#  - action: utter_how_was_your_day
-#  - intent: day_like
-#  - action: utter_fav_part_today
-#  - intent: fav_part_description
-#  - action: action_show_time
-#  - active_loop: next_question
-
 - story: share_about_day
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: share_day
+  - action: utter_day_describe
+
+- story: share_about_day2
+  steps:
+  - intent: share_day2
+  - action: utter_cheer_up
+  - action: action_next_topic
+
+- story: share_about_day1
+  steps:
+  - intent: share_day1
   - action: share_about_day_form
   - active_loop: share_about_day_form
-
-  - slot_was_set:
-    - requested_slot: day_describe
-  - slot_was_set:
-    - day_describe: it is good
 
   - slot_was_set:
     - requested_slot: day_fav_part
@@ -132,23 +123,33 @@ stories:
 - story: asking_directions
   steps:
   - intent: asking_directions
+  - action: utter_asking_directions_q1
+
+- story: asking_directions2
+  steps:
+  - intent: asking_directions2
+  - action: action_next_topic
+
+- story: asking_directions1
+  steps:
+  - intent: asking_directions1
   - action: asking_directions_form
   - active_loop: asking_directions_form
-  
-  - slot_was_set:
-    - requested_slot: asking_directions_q1
-  - slot_was_set:
-    - asking_directions_q1: dontknow
     
   - slot_was_set:
-    - requested_slot: asking_directions_q2
+      - requested_slot: asking_directions_q2
   - slot_was_set:
-    - asking_directions_q2: dontknow
-  
+      - asking_directions_q2: dontknow
+
   - slot_was_set:
     - requested_slot: asking_directions_q3
   - slot_was_set:
     - asking_directions_q3: dontknow
+  
+  - slot_was_set:
+    - requested_slot: asking_directions_q4
+  - slot_was_set:
+    - asking_directions_q4: dontknow
   
   - active_loop: null
   - action: utter_submit
@@ -472,25 +473,40 @@ stories:
   - slot_was_set:
     - seek_clarification_q5: dontknow
 
-  - slot_was_set:
-    - requested_slot: seek_clarification_q6_1
-  - slot_was_set:
-    - seek_clarification_q6_1: dontknow
+  - active_loop: null
+  - action: utter_seek_clarification_q6
+
+- story: seek_clarification_1
+  steps:
+  - intent: seek_clarification_1
+  - action: seek_clarification_1_form
+  - active_loop: seek_clarification_1_form
 
   - slot_was_set:
-    - requested_slot: seek_clarification_q6_2
+    - requested_slot: seek_clarification_q7_1
   - slot_was_set:
-    - seek_clarification_q6_2: dontknow
-
-  - slot_was_set:
-    - requested_slot: seek_clarification_q7
-  - slot_was_set:
-    - seek_clarification_q7: dontknow
+    - seek_clarification_q7_1: dontknow
 
   - slot_was_set:
     - requested_slot: seek_clarification_q8
   - slot_was_set:
     - seek_clarification_q8: dontknow
+
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_next_topic
+
+- story: seek_clarification_2
+  steps:
+  - intent: seek_clarification_2
+  - action: seek_clarification_2_form
+  - active_loop: seek_clarification_2_form
+
+  - slot_was_set:
+    - requested_slot: seek_clarification_q7_2
+  - slot_was_set:
+    - seek_clarification_q7_2: dontknow
 
   - active_loop: null
   - action: utter_submit

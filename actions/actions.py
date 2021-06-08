@@ -38,6 +38,48 @@ class ActionHelloWorld(Action):
 
         return []
 
+class Validate_seek_clarification_1_form(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_seek_clarification_1_form"
+
+    def seek_clarification_q7_1(
+                                    self,
+                                    slot_value: Any,
+                                    dispatcher: CollectingDispatcher,
+                                    tracker: Tracker,
+                                    domain: DomainDict,) -> Dict[Text, Any]:
+        return {"seek_clarification_q7_1": slot_value}
+    def seek_clarification_q8(
+                                    self,
+                                    slot_value: Any,
+                                    dispatcher: CollectingDispatcher,
+                                    tracker: Tracker,
+                                    domain: DomainDict,) -> Dict[Text, Any]:
+        intent = tracker.get_intent_of_latest_message()
+        if intent != 'thank':
+            dispatcher.utter_message(text=f"Maybe you can express your gratitude when someone gives you help.")
+            return {"seek_clarification_q8": None}
+        else:
+            return {"seek_clarification_q8": slot_value}
+
+class Validate_seek_clarification_2_form(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_seek_clarification_2_form"
+
+    def seek_clarification_q7_2(
+                                    self,
+                                    slot_value: Any,
+                                    dispatcher: CollectingDispatcher,
+                                    tracker: Tracker,
+                                    domain: DomainDict,) -> Dict[Text, Any]:
+        intent = tracker.get_intent_of_latest_message()
+        if intent != 'thank':
+            dispatcher.utter_message(text=f"Maybe you can express your gratitude when someone gives you help.")
+            return {"seek_clarification_q7_2": None}
+        else:
+            return {"seek_clarification_q7_2": slot_value}
+
+
 class Validate_seek_clarification_form(FormValidationAction):
     def name(self) -> Text:
         return "validate_seek_clarification_form"
@@ -87,7 +129,7 @@ class Validate_seek_clarification_form(FormValidationAction):
                                     dispatcher: CollectingDispatcher,
                                     tracker: Tracker,
                                     domain: DomainDict,) -> Dict[Text, Any]:
-        return {"seek_clarification_q3": slot_value}
+        return {"seek_clarification_q4": slot_value}
 
     def seek_clarification_q5(
                                     self,
@@ -95,56 +137,23 @@ class Validate_seek_clarification_form(FormValidationAction):
                                     dispatcher: CollectingDispatcher,
                                     tracker: Tracker,
                                     domain: DomainDict,) -> Dict[Text, Any]:
-        return {"seek_clarification_q3": slot_value}
+        return {"seek_clarification_q5": slot_value}
 
-    def seek_clarification_q6_1(
-                                    self,
-                                    slot_value: Any,
-                                    dispatcher: CollectingDispatcher,
-                                    tracker: Tracker,
-                                    domain: DomainDict,) -> Dict[Text, Any]:
+
+class Seek_clarification_q6(Action):
+
+    def name(self) -> Text:
+        return "seek_clarification_q6"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
         intent = tracker.get_intent_of_latest_message()
         if intent == 'affirm':
-            return {"seek_clarification_q6_1": slot_value,
-                    "seek_clarification_q6_2": slot_value}
+            return [FollowupAction("seek_clarification_1_form")]
         elif intent == 'deny':
-            return {"seek_clarification_q6_1": slot_value}
-
-    def seek_clarification_q6_2(
-                                    self,
-                                    slot_value: Any,
-                                    dispatcher: CollectingDispatcher,
-                                    tracker: Tracker,
-                                    domain: DomainDict,) -> Dict[Text, Any]:
-        intent = tracker.get_intent_of_latest_message()
-        if intent == 'affirm':
-            return {"seek_clarification_q6_2": slot_value,
-                    "seek_clarification_q7": slot_value,
-                    "seek_clarification_q8": slot_value,
-                    "seek_clarification_q9": slot_value}
-        else:
-            return {"seek_clarification_q6_2": None}
-
-    def seek_clarification_q7(
-                                    self,
-                                    slot_value: Any,
-                                    dispatcher: CollectingDispatcher,
-                                    tracker: Tracker,
-                                    domain: DomainDict,) -> Dict[Text, Any]:
-        return {"seek_clarification_q7": slot_value}
-
-    def seek_clarification_q8(
-                                    self,
-                                    slot_value: Any,
-                                    dispatcher: CollectingDispatcher,
-                                    tracker: Tracker,
-                                    domain: DomainDict,) -> Dict[Text, Any]:
-        intent = tracker.get_intent_of_latest_message()
-        if intent != 'affirm':
-            dispatcher.utter_message(text=f"That's a wrong format....")
-            return {"seek_clarification_q8": None}
-        else:
-            return {"seek_clarification_q8": slot_value}
+            return [FollowupAction("seek_clarification_2_form")]
 
 
 class Validate_encountering_problem_form(FormValidationAction):
@@ -731,25 +740,6 @@ class Validate_favorite_things_form(FormValidationAction):
 class Validate_asking_directions_form(FormValidationAction):
     def name(self) -> Text:
         return "validate_asking_directions_form"
-
-    def validate_asking_directions_q1(
-            self,
-            slot_value: Any,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate `day_describe` value."""
-
-        # If the name is super short, it might be wrong.
-        print(f"First name given = {slot_value} length = {len(slot_value)}")
-
-        intent = tracker.get_intent_of_latest_message()
-        if intent != 'place':
-            dispatcher.utter_message(text=f"That's a wrong format....")
-            return {"asking_directions_q1": None}
-        else:
-            return {"asking_directions_q1": slot_value}
             
     def validate_asking_directions_q2(
             self,
@@ -764,11 +754,12 @@ class Validate_asking_directions_form(FormValidationAction):
         print(f"First name given = {slot_value} length = {len(slot_value)}")
 
         intent = tracker.get_intent_of_latest_message()
-        if intent == 'affirm':
+        if intent != 'place':
+            dispatcher.utter_message(text=f"Sorry, I did not cat Can you express it another way? ")
+            return {"asking_directions_q2": None}
+        else:
             return {"asking_directions_q2": slot_value}
-        elif intent == 'deny':
-            return {"asking_directions_q2": slot_value, "asking_directions_q3": slot_value}
-    
+
     def validate_asking_directions_q3(
             self,
             slot_value: Any,
@@ -782,90 +773,33 @@ class Validate_asking_directions_form(FormValidationAction):
         print(f"First name given = {slot_value} length = {len(slot_value)}")
 
         intent = tracker.get_intent_of_latest_message()
-        if intent == 'waytobusstop':
+        if intent == 'affirm':
             return {"asking_directions_q3": slot_value}
+        elif intent == 'deny':
+            return {"asking_directions_q3": slot_value, "asking_directions_q4": slot_value}
+    
+    def validate_asking_directions_q4(
+            self,
+            slot_value: Any,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `day_describe` value."""
+
+        # If the name is super short, it might be wrong.
+        print(f"First name given = {slot_value} length = {len(slot_value)}")
+
+        intent = tracker.get_intent_of_latest_message()
+        if intent == 'waytobusstop':
+            return {"asking_directions_q4": slot_value}
         else:
-            return {"asking_directions_q3": None}
+            return {"asking_directions_q4": None}
 
 
 class Validate_share_about_day_form(FormValidationAction):
     def name(self) -> Text:
         return "validate_share_about_day_form"
-
-    def validate_day_describe(
-            self,
-            slot_value: Any,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate `day_describe` value."""
-
-        # If the name is super short, it might be wrong.
-        print(f"First name given = {slot_value} length = {len(slot_value)}")
-
-        # 修改unexpected input判定条件 置信度阈值
-        intent = tracker.get_intent_of_latest_message()
-        if intent != 'day_description':
-            dispatcher.utter_message(text=f"That's a wrong format....")
-            return {"day_describe": None}
-        else:
-            return {"day_describe": slot_value}
-    # async def required_slots(
-    #         self,
-    #         slots_mapped_in_domain: List[Text],
-    #         dispatcher: "CollectingDispatcher",
-    #         tracker: "Tracker",
-    #         domain: "DomainDict",
-    # ) -> Optional[List[Text]]:
-    #     first_name = tracker.slots.get("first_name")
-    #     if first_name is not None:
-    #         if first_name not in names:
-    #             return ["name_spelled_correctly"] + slots_mapped_in_domain
-    #     return slots_mapped_in_domain
-
-
-    # 给button加API
-    # async def extract_name_spelled_correctly(
-    #         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
-    # ) -> Dict[Text, Any]:
-    #     intent = tracker.get_intent_of_latest_message()
-    #     if 判定： 如果intent == happy
-    #     dispatcher.utter_message(text=f"That's a very short description. Can you try to speak like....")
-    #     return {"name_spelled_correctly": intent == "affirm"}
-    #     elif:
-
-    # def validate_name_spelled_correctly(
-    #         self,
-    #         slot_value: Any,
-    #         dispatcher: CollectingDispatcher,
-    #         tracker: Tracker,
-    #         domain: DomainDict,
-    # ) -> Dict[Text, Any]:
-    #     """Validate `first_name` value."""
-    #     if tracker.get_slot("name_spelled_correctly"):
-    #         return {"first_name": tracker.get_slot("first_name"), "name_spelled_correctly": True}
-    #     return {"first_name": None, "name_spelled_correctly": None}
-
-    def validate_day_describe(
-            self,
-            slot_value: Any,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate `day_describe` value."""
-
-        # If the name is super short, it might be wrong.
-        print(f"First name given = {slot_value} length = {len(slot_value)}")
-
-        # 修改unexpected input判定条件 置信度阈值
-        intent = tracker.get_intent_of_latest_message()
-        if intent != 'day_description':
-            dispatcher.utter_message(text=f"That's a wrong format....")
-            return {"day_describe": None}
-        else:
-            return {"day_describe": slot_value}
 
     def validate_day_fav_part(
             self,
@@ -898,7 +832,7 @@ class Validate_share_about_day_form(FormValidationAction):
         print(f"First name given = {slot_value} length = {len(slot_value)}")
         
         intent = tracker.get_intent_of_latest_message()
-        if (intent == 'ask_back_howwasday') | (intent == 'affirm'):
+        if (intent == 'ask_back_howwasday') or (intent == 'affirm'):
             return {"ask_back_howwasyourday": slot_value}
         else:
             dispatcher.utter_message(text=f"That's a wrong format....")
@@ -941,24 +875,6 @@ class Validate_share_about_day_form(FormValidationAction):
             return {"receive_thanks": None}
         else:
             return {"receive_thanks": slot_value}
-
-
-    # def validate_last_name(
-    #         self,
-    #         slot_value: Any,
-    #         dispatcher: CollectingDispatcher,
-    #         tracker: Tracker,
-    #         domain: DomainDict,
-    # ) -> Dict[Text, Any]:
-    #     """Validate `last_name` value."""
-    #
-    #     # If the name is super short, it might be wrong.
-    #     print(f"Last name given = {slot_value} length = {len(slot_value)}")
-    #     if len(slot_value) <= 1:
-    #         dispatcher.utter_message(text=f"That's a very short name. I'm assuming you mis-spelled.")
-    #         return {"last_name": None}
-    #     else:
-    #         return {"last_name": slot_value}
 
 #jump to next topic
 class ActionNextTopic(Action):

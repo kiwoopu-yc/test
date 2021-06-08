@@ -41,6 +41,12 @@ nlu:
     - correct
     - ok
 
+- intent: thank
+  examples: |
+    - OK, thanks
+    - Thank you very much
+    - You are very nice
+
 - intent: deny
   examples: |
     - no
@@ -101,7 +107,15 @@ nlu:
 
 - intent: share_day
   examples: |
-    - share day
+    - start topic share day
+
+- intent: share_day1
+  examples: |
+    - share day 1
+
+- intent: share_day2
+  examples: |
+    - share day 2
 
 - intent: day_description
   examples: |
@@ -112,8 +126,10 @@ nlu:
 
 - intent: fav_part
   examples: |
-    - My favorite part is [playing soccer]
+    - My favorite part was [playing soccer]
+    - My favorite part was [eating apples]
     - It is [drawing pictures]
+    - My favorite part was
 
 - intent: ask_back_howwasday
   examples: |
@@ -123,6 +139,7 @@ nlu:
     - How was your day?
     - How's your day?
     - So, how was your day?
+    - yes
 
 - intent: ask_back_favpart
   examples: |
@@ -147,15 +164,23 @@ nlu:
     - I have some errands to run
 
 # topic asking directions
+- intent: asking_directions1
+  examples: |
+    - ask directions 1
+
+- intent: asking_directions2
+  examples: |
+    - ask directions 2
+
 - intent: asking_directions
   examples: |
     - ask directions 
 
 - intent: place
   examples: |
-    - Yes, this is [my home]
-    - Yes, this is [New York]
-    - Yes, we are in [a park]
+    - This is [my home]
+    - This is [New York]
+    - We are in [a park]
     - We are in [a zoo]
 
 - intent: waytobusstop
@@ -347,3 +372,9 @@ nlu:
 - intent: seek_clarification_a3
   examples: |
     - I don't understand the requirement.
+- intent: seek_clarification_1
+  examples: |
+    - start seek clarification 1
+- intent: seek_clarification_2
+  examples: |
+    - start seek clarification 2
